@@ -1,17 +1,17 @@
 @php
-$items = [
-    route('index') => 'Home',
-    route('courses') => 'Courses',
-    route('contact') => 'Contact',
-    route('login') => 'Login',
-    route('register') => 'Register',
-];
+    $items = collect(config('watch.nav_items'))->reject(
+         fn ($label, $routeName) => in_array($routeName, ['terms', 'privacy'])
+     );
 @endphp
 
 <nav>
     <ul class="flex gap-8">
-        @foreach($items as $href => $label)
-            <x-nav.item :href>{{ $label }}</x-nav.item>
+        @foreach($items as $routeName => $label)
+            <x-nav.item
+                :href="route($routeName)"
+                :is-active="request()->routeIs($routeName)">
+                {{ $label }}
+            </x-nav.item>
         @endforeach
     </ul>
 </nav>
