@@ -1,27 +1,21 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', IndexController::class)->name('index');
 
-Route::get('/', function () {
-    $courses = DB::select('select * from courses');
-    return view('index', compact('courses'));
-})->name('index');
+Route::controller(CourseController::class)
+    ->prefix('courses')
+    ->name('courses.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{course}', 'show')->name('show');
+    });
 
-Route::get('/courses', function () {
-    $courses = DB::select('select * from courses');
-    return view('courses', compact('courses'));
-})->name('courses');
-
-Route::get('/course/{id}', function ($id) {
-    $course = DB::selectOne('select * from courses where id = :id', compact('id'));
-    return view('course', compact('course'));
-})->name('course');
-
-Route::view('/contact','contact')->name('contact');
-Route::view('/login','login')->name('login');
-Route::view('/register','register')->name('register');
-Route::view('/terms','terms')->name('terms');
-Route::view('/privacy','privacy')->name('privacy');
-
+Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/login', 'pages.login')->name('login');
+Route::view('/register', 'pages.register')->name('register');
+Route::view('/terms', 'pages.terms')->name('terms');
+Route::view('/privacy', 'pages.privacy')->name('privacy');
