@@ -13,7 +13,7 @@ class CourseController extends Controller
         $courses = Course::latest()
             ->where('title', 'like', "%{$request->search}%")
             ->orWhere('description', 'like', "%{$request->search}%")
-            ->paginate(2)
+            ->paginate(10)
             ->withQueryString();
 
         return view('pages.courses.index', compact('courses'));

@@ -7,11 +7,11 @@
         </header>
         <p>{{ $course->description }}</p>
         <footer class="flex gap-2">
-            <a href="#"
+            <a href="{{ route('lessons.show', $course->firstLesson) }}"
                class="text-center whitespace-nowrap rounded-md font-semibold px-4 py-2 bg-violet-500 text-white hover:bg-violet-600 grow">
                 Start Warching
             </a>
-            <a href="https://github.com"
+            <a href="{{ $course->repository_url }}"
                target="_blank"
                class="text-center whitespace-nowrap rounded-md font-semibold px-4 py-2 bg-gray-100 hover:bg-gray-200 grow">
                 Source Code

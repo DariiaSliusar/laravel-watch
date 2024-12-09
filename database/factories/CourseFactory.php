@@ -18,6 +18,7 @@ class CourseFactory extends Factory
             'title' => ucfirst(fake()->words(rand(2,6), true)),
             'description' => fake()->paragraph(2),
             'length' => "{$hours}h {$minutes}min",
+            'repository_url' => 'https://github.com/DariiaSliusar/laravel-watch',
         ];
     }
 }
