@@ -1,4 +1,4 @@
-<a href="{{ route('courses.show', $course) }}" class="rounded-md bg-gray-100 hover:bg-gray-200">
+<a href="{{ $course->routeUrl }}" class="rounded-md bg-gray-100 hover:bg-gray-200">
     <article class=" flex flex-col p-4 h-full">
         <header>
             <h3 class="font-semibold text-xl">{{ $course->title }}</h3>
@@ -11,7 +11,7 @@
             </div>
             <div class="flex items-center gap-2">
                 <x-icon name="clock" class="size-4"/>
-                <span class="text-sm font-semibold">{{ $course->length }}</span>
+                <span class="text-sm font-semibold">{{ $course->formattedLength }}</span>
             </div>
         </footer>
     </article>

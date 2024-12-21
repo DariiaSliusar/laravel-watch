@@ -16,17 +16,9 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-
-            //            $table->foreignId('course_id')
-            //                ->constrained()
-            //                ->onUpdate('cascade')
-            //                ->onDelete('cascade');
-
-            //            $table->unsignedBigInteger('course_id');
-            //            $table->foreign('course_id')->references('id')->on('courses');
-
             $table->unsignedSmallInteger('number');
             $table->string('title');
+            $table->unsignedSmallInteger('length');
             $table->string('url');
             $table->string('commit_url');
             $table->timestamps();

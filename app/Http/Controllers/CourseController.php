@@ -11,6 +11,7 @@ class CourseController extends Controller
     public function index(Request $request): View
     {
         $courses = Course::latest()
+            ->withSum('lessons as length', 'length')
             ->where('title', 'like', "%{$request->search}%")
             ->orWhere('description', 'like', "%{$request->search}%")
             ->paginate(10)
